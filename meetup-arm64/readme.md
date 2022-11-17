@@ -18,40 +18,42 @@ Co-founder and CEO of Royal Apps GmbH and Windows lead developer for Royal TS, a
 
 Outline Slides:
 
-Cover
+#### Cover
     WinForms on ARM64 with .NET 7
-About Me
+
+#### About Me
     Stefan Koell
     Co-founder/CEO Royal Apps GmbH
     e: stefan.koell(-at-)royalapps.com
     m: @stefankoell@masto.ai
     t: @stefankoell
-About Royal TS
+
+#### About Royal TS
     - WinForms, C#
     - Offers RDP, VNC, Terminal (SSH), Web, and more
     - Cross-Platform Codebase (Windows, macOS, mobile)
     - DI, Messaging, HighDPI, SVG, UI Theming
     - .NET Framework -> .NET 5, 6, 7
-Why WinForms?
+#### Why WinForms?
     - First release 2003
     - Interop / Win32 access
     - 3rd party component ecosystem
     - UWP/WinUI issues and maturity
     - Rewrite is expensive
     - Maybe WPF/Avalonia
-ARM64: What/Why?
+#### ARM64: What/Why?
     - SoC
     - High Performance
     - High Efficiency
     - Great Battery Life
     - Low Heat/Noise
-WoA: Windows on ARM
+#### WoA: Windows on ARM
     - "special" Windows SKU
     - Intel Bridge (Windows 11 only!) vs Rosetta 2 (macOS)
     - Licensing
     - Windows Insider
     - Parallels on Apple M1/M2
-Hardware
+#### Hardware
     - Ultrabooks / Notebooks
       - Microsoft: Surface Pro 9 and X
       - Lenovo: Flex, Thinkpad
@@ -61,21 +63,21 @@ Hardware
     - Ampere Computing
       https://solutions.amperecomputing.com/systems/altra/kraken-comhpc-WS
     - Apple: M1/M2 with Parallels
-Software supporting ARM64
+#### Software supporting ARM64
     - Windows 11
     - .NET 7
     - Visual Studio 2022
     - JetBrains Rider
     - VS Code
     - Edge
-Royal TS for ARM64
+#### Royal TS for ARM64
     - Any CPU vs x64 vs ARM64
     - PInvoke Considerations
     - 3rd Party Dependencies
     - Self Contained
     - CI/CD Pipeline (nuke)
     - Build ARM64 artifact on x64 (Build Server)
-Q&A
+#### Q&A
     Thank you!
     Btw, we're hiring! ;) https://royalapps.com/jobs
     e: stefan.koell(-at-)royalapps.com
