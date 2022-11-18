@@ -74,7 +74,9 @@ Outline Slides:
     - Using pure (.NET only) packages
     - Using packages with native binaries
     - Creating packages with native binaries:
-      (External Apps)[https://github.com/royalapplications/royalapps-community-externalapps]
+        - Use compiler directives (#if)
+        - Use RuntimeInformation API
+          (External Apps)[https://github.com/royalapplications/royalapps-community-externalapps]
 #### Royal TS for ARM64
     - Any CPU vs x64 vs ARM64
     - PInvoke Considerations
