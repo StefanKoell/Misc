@@ -62,7 +62,7 @@ Outline Slides:
     - Project Volterra
     - Ampere Computing
       https://solutions.amperecomputing.com/systems/altra/kraken-comhpc-WS
-    - Apple: M1/M2 with Parallels
+    - Apple: M1/M2 with Parallels/vmware Fusion
 #### Software supporting ARM64
     - Windows 11
     - .NET 7
