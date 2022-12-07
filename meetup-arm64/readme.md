@@ -84,6 +84,14 @@ Outline Slides:
     - Self Contained
     - CI/CD Pipeline (nuke)
     - Build ARM64 artifact on x64 (Build Server)
+#### Real World Performance
+    - x64 Dev Machine (16-core Ryzen 9 5950X, 3,4GHz, 64GB RAM)
+        - Compile Time: ~ 12s
+        - Startup Time: ~ 8s
+     - ARM64 Dev VM (8-core Apple Silicon, 3,2GHz, 24GB RAM)*
+        - Compile Time: ~ 15s
+        - Startup Time: ~ 8s
+     * Mac Studio 2022, M1 Max (10-core), 64GB
 #### Q&A
     Thank you!
     Btw, we're hiring! ;) https://royalapps.com/jobs
