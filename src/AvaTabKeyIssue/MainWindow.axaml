@@ -1,0 +1,60 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avaTabKeyIssue="clr-namespace:AvaTabKeyIssue"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaTabKeyIssue.MainWindow"
+        Title="AvaTabKeyIssue"
+        x:DataType="avaTabKeyIssue:MainWindowViewModel"
+        >
+    
+        <StackPanel Orientation="Vertical">
+                <ToggleButton
+                        Content="Test 1"
+                        IsTabStop="True"
+                />
+
+                <ToggleButton
+                        Content="Test 2"
+                        IsTabStop="True"
+                />
+
+        <ItemsRepeater ItemsSource="{Binding Items}">
+            <ItemsRepeater.ItemTemplate>
+                <DataTemplate DataType="avaTabKeyIssue:TestViewModel">
+                    <StackPanel Orientation="Vertical">
+        
+                        <ToggleButton
+                            Content="{Binding Caption}"
+                            IsTabStop="True"
+                            />
+        
+                        <Panel IsVisible="{Binding Expanded}">
+        
+                            <ItemsRepeater ItemsSource="{Binding Items}">
+                                <ItemsRepeater.ItemTemplate>
+                                    <DataTemplate DataType="avaTabKeyIssue:TestViewModel">
+        
+                                        <StackPanel Orientation="Vertical">
+                                            <ToggleButton
+                                                Content="{Binding Caption}"
+                                                IsTabStop="True"
+                                            />
+                                        </StackPanel>
+        
+                                    </DataTemplate>
+                                </ItemsRepeater.ItemTemplate>
+                            </ItemsRepeater>
+        
+                        </Panel>
+        
+                    </StackPanel>
+        
+                </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+        </ItemsRepeater>
+
+        </StackPanel>
+
+</Window>
