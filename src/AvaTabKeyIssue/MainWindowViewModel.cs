@@ -12,5 +12,6 @@ public partial class MainWindowViewModel : ObservableObject
         Items.Add(new TestViewModel("Item _1", true));
         Items.Add(new TestViewModel("Item _2", true));
         Items.Add(new TestViewModel("Item _3", true));
+        Items.Add(new TestViewModel("Item _C", false));
     }
 }
