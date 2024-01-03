@@ -8,17 +8,28 @@
         Title="AvaTabKeyIssue"
         x:DataType="avaTabKeyIssue:MainWindowViewModel"
         >
+
     
         <StackPanel Orientation="Vertical">
-                <ToggleButton
-                        Content="Test 1 _A"
-                        IsTabStop="True"
-                />
+            <Menu>
+                <MenuItem Header="Menu 1">
+                    <MenuItem Header="Menu 1-1" />
+                </MenuItem>
+                <MenuItem Header="Menu 2">
+                </MenuItem>
+                <MenuItem Header="Menu 3">
+                </MenuItem>
+            </Menu>
 
-                <ToggleButton
-                        Content="Test 2 _B"
-                        IsTabStop="True"
-                />
+            <ToggleButton
+                    Content="Test 1 _A"
+                    IsTabStop="True"
+            />
+
+            <ToggleButton
+                    Content="Test 2 _B"
+                    IsTabStop="True"
+            />
 
         <ItemsRepeater ItemsSource="{Binding Items}">
             <ItemsRepeater.ItemTemplate>
@@ -27,6 +38,7 @@
         
                         <ToggleButton
                             Content="{Binding Caption}"
+                            IsChecked="{Binding Expanded}"
                             IsTabStop="True"
                             />
         
