@@ -1,0 +1,77 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:np="https://np.com/visuals"
+        xmlns:local="clr-namespace:NP.ViewModelSample"
+        Width="700"
+        Height="1000"
+        np:DockAttachedProperties.DockChildWindowOwner="{Binding RelativeSource={RelativeSource Mode=Self}}"
+        np:DockAttachedProperties.TheDockManager="{x:Static local:MyContainer.TheDockManager}"
+        x:Class="NP.ViewModelSample.MainWindow"
+        Title="NP.ViewModelSample"
+        BorderBrush="Gray">
+  <Window.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="avares://NP.Ava.Visuals/Themes/Geometries.axaml"/>
+      </ResourceDictionary.MergedDictionaries>
+      <DataTemplate x:Key="TheDataTemplate">
+        <TextBlock Background="Green"
+                   Foreground="White"
+                   Text="{Binding}"/>
+      </DataTemplate>
+    </ResourceDictionary>
+  </Window.Resources>
+  <Window.Styles>
+    <StyleInclude Source="avares://NP.Ava.UniDock/Themes/DockStyles.axaml"/>
+  </Window.Styles>
+  <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+        RowDefinitions="Auto, *, Auto">
+    <ListBox ItemsSource="{Binding Path=VMs, RelativeSource={RelativeSource AncestorType=Window}}"
+             Height="300">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding Path=IsDockVisible, Mode=TwoWay}"
+                      Content="{Binding Header}"/>
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    
+    <np:RootDockGroup np:DockAttachedProperties.TheDockManager="{x:Static local:MyContainer.TheDockManager}"
+                        Grid.Row="1">
+      
+      <np:StackDockGroup TheOrientation="Horizontal" IsStableGroup="True" InitialSizeCoefficients="250 * 250">
+        <np:StackDockGroup DockId="Left" IsStableGroup="True" TheOrientation="Horizontal" />
+        <np:TabbedDockGroup DockId="Tabs" IsStableGroup="True" />
+        <np:StackDockGroup DockId="Right" IsStableGroup="True" TheOrientation="Horizontal" />
+      </np:StackDockGroup>
+      
+    </np:RootDockGroup>
+
+    <StackPanel Margin="10,5"
+                Grid.Row="2"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right">
+      <Button x:Name="AddMainTabButton"
+              Content="Add Main Tab"
+              Padding="10,5"
+              Margin="0,0,10,0" />
+
+      <Button x:Name="AddFloatingTabButton"
+              Content="Add Floating Tab"
+              Padding="10,5"
+              Margin="0,0,10,0" />
+
+      <Button x:Name="SaveButton"
+              Content="Save"
+              Padding="10,5"
+              Margin="0,0,10,0" />
+
+      <Button x:Name="RestoreButton"
+              Content="Restore"
+              Padding="10,5" />
+    </StackPanel>
+  </Grid>
+</Window>
