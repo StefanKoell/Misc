@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaTransitions.MainWindow"
+        Title="AvaloniaTransitions">
+    <Grid RowDefinitions="*, Auto">
+        
+        <Border Grid.Row="0" Background="Navy">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                <CheckBox Name="CheckBox" Margin="20">Show Footer</CheckBox>
+            </StackPanel>
+        </Border>
+        
+        <Border Grid.Row="1" 
+                Classes.show="{Binding #CheckBox.IsChecked}"
+                Classes.hide="{Binding !#CheckBox.IsChecked}"
+                BorderThickness="0 1 0 0"
+                BorderBrush="Red"
+                Background="DarkRed">
+            <Border.Styles>
+                <Style Selector="Border.show">
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="RenderTransform" Value="translateY(0px)" />
+                </Style>
+                <Style Selector="Border.hide">
+                    <Setter Property="Opacity" Value="0" />
+                    <Setter Property="RenderTransform" Value="translateY(75px)" />
+                </Style>
+                <Style Selector="Border[Opacity=0]">
+                    <Setter Property="IsVisible" Value="False" />
+                </Style>
+            </Border.Styles>
+            <Border.Transitions>
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                </Transitions>
+            </Border.Transitions>
+            <TextBlock Margin="20">Footer</TextBlock>
+        </Border>
+        
+    </Grid>
+</Window>
