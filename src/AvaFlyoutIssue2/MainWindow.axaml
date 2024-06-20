@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avaFlyoutIssue="clr-namespace:AvaFlyoutIssue"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaFlyoutIssue.MainWindow"
+        Title="AvaFlyoutIssue"
+        x:DataType="avaFlyoutIssue:MainWindowViewModel">
+
+    <StackPanel Margin="50" KeyboardNavigation.TabNavigation="Cycle">
+
+        <StackPanel>
+            <Button>Button _A</Button>
+            <Button>Button _B</Button>
+        </StackPanel>
+
+        <TextBox Width="200">
+            <TextBox.InnerRightContent>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="FlyoutButton1" Content="Click Me!">
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel>
+                                    <Button Click="Button_OnClick">Close _A</Button>
+                                    <Button Click="Button_OnClick">Close _B</Button>
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+
+                    <Button Name="FlyoutButton" Content="Click Me!">
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel>
+                                    <Button Click="Button_OnClick">Close _A</Button>
+                                    <Button Click="Button_OnClick">Close _B</Button>
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+
+                </StackPanel>
+            </TextBox.InnerRightContent>
+        </TextBox>
+
+    </StackPanel>
+
+</Window>
