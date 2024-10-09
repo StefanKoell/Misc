@@ -6,67 +6,62 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaTabKeyIssue.MainWindow"
         Title="AvaTabKeyIssue"
-        x:DataType="avaTabKeyIssue:MainWindowViewModel"
-        >
+        x:DataType="avaTabKeyIssue:MainWindowViewModel">
 
-    
-        <StackPanel Orientation="Vertical">
-            <Menu>
-                <MenuItem Header="Menu 1">
-                    <MenuItem Header="Menu 1-1" />
-                </MenuItem>
-                <MenuItem Header="Menu 2">
-                </MenuItem>
-                <MenuItem Header="Menu 3">
-                </MenuItem>
-            </Menu>
 
-            <ToggleButton
-                    Content="Test 1 _A"
-                    IsTabStop="True"
-            />
+    <StackPanel Orientation="Vertical">
+        <Menu>
+            <MenuItem Header="Menu 1">
+                <MenuItem Header="Menu 1-1" />
+            </MenuItem>
+            <MenuItem Header="Menu 2">
+            </MenuItem>
+            <MenuItem Header="Menu 3">
+            </MenuItem>
+        </Menu>
 
-            <ToggleButton
-                    Content="Test 2 _B"
-                    IsTabStop="True"
-            />
+        <ToggleButton
+            Content="Test 1 _A"
+            IsTabStop="True" />
 
-        <ItemsRepeater ItemsSource="{Binding Items}">
-            <ItemsRepeater.ItemTemplate>
+        <ToggleButton
+            Content="Test 2 _B"
+            IsTabStop="True" />
+
+        <ItemsControl ItemsSource="{Binding Items}">
+            <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="avaTabKeyIssue:TestViewModel">
                     <StackPanel Orientation="Vertical">
-        
+
                         <ToggleButton
                             Content="{Binding Caption}"
                             IsChecked="{Binding Expanded}"
-                            IsTabStop="True"
-                            />
-        
+                            IsTabStop="True" />
+
                         <Panel IsVisible="{Binding Expanded}">
-        
-                            <ItemsRepeater ItemsSource="{Binding Items}">
-                                <ItemsRepeater.ItemTemplate>
+
+                            <ItemsControl ItemsSource="{Binding Items}">
+                                <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="avaTabKeyIssue:TestViewModel">
-        
+
                                         <StackPanel Orientation="Vertical">
                                             <ToggleButton
                                                 Content="{Binding Caption}"
-                                                IsTabStop="True"
-                                            />
+                                                IsTabStop="True" />
                                         </StackPanel>
-        
-                                    </DataTemplate>
-                                </ItemsRepeater.ItemTemplate>
-                            </ItemsRepeater>
-        
-                        </Panel>
-        
-                    </StackPanel>
-        
-                </DataTemplate>
-            </ItemsRepeater.ItemTemplate>
-        </ItemsRepeater>
 
-        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                        </Panel>
+
+                    </StackPanel>
+
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </StackPanel>
 
 </Window>
