@@ -23,12 +23,7 @@ public partial class MainWindow : Window
         Dispatcher.UIThread.Post(() =>
         {
             var popup = button.GetLogicalAncestors().OfType<Popup>().FirstOrDefault();
-            popup?.Host?.Hide();
-
-            // Execute following code as a workaround:
-            // var flyout = FlyoutButton.Flyout;
-            // FlyoutButton.Flyout = null;
-            // FlyoutButton.Flyout = flyout;
+            popup!.IsOpen = false;
         });
     }
 }
