@@ -13,6 +13,15 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = new MainWindowViewModel();
+        // trying this workaround is also not working
+        // in this case, I can't navigate anywhere using the keyboard
+        // FlyoutButton1.Flyout.Opened += (sender, args) =>
+        // {
+        //     Dispatcher.UIThread.Invoke(() =>
+        //     {
+        //         ButtonA.Focus();
+        //     }, DispatcherPriority.Background);
+        // };
     }
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)
@@ -23,12 +32,7 @@ public partial class MainWindow : Window
         Dispatcher.UIThread.Post(() =>
         {
             var popup = button.GetLogicalAncestors().OfType<Popup>().FirstOrDefault();
-            popup?.Host?.Hide();
-
-            // Execute following code as a workaround:
-            // var flyout = FlyoutButton.Flyout;
-            // FlyoutButton.Flyout = null;
-            // FlyoutButton.Flyout = flyout;
+            popup!.IsOpen = false;
         });
     }
 }

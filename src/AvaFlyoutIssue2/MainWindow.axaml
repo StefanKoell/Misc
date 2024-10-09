@@ -22,7 +22,7 @@
                         <Button.Flyout>
                             <Flyout>
                                 <StackPanel>
-                                    <Button Click="Button_OnClick">Close _A</Button>
+                                    <Button Name="ButtonA" Click="Button_OnClick">Close _A</Button>
                                     <Button Click="Button_OnClick">Close _B</Button>
                                 </StackPanel>
                             </Flyout>
