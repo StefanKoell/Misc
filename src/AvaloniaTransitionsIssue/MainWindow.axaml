@@ -12,6 +12,7 @@
                         
                         <Button Click="Button1_OnClick">Content 1</Button>
                         <Button Click="Button2_OnClick">Content 2</Button>
+                        <Button Click="Button3_OnClick">Content Cached</Button>
                         
                 </StackPanel>
                 

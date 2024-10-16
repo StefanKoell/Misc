@@ -8,6 +8,8 @@ namespace AvaloniaTransitions;
 
 public partial class MainWindow : Window
 {
+    private UserControl2? _cache;
+    
     private readonly PageSlide _pageSlide = new(TimeSpan.FromMilliseconds(500), PageSlide.SlideAxis.Vertical)
     {
         SlideInEasing = new ExponentialEaseOut(),
@@ -42,6 +44,12 @@ public partial class MainWindow : Window
     private void Button2_OnClick(object? sender, RoutedEventArgs e)
     {
         TransitioningContentControl.Content = CreateControl(typeof(UserControl2));
+    }
+
+    private void Button3_OnClick(object? sender, RoutedEventArgs e)
+    {
+        _cache ??= CreateControl(typeof(UserControl2)) as UserControl2;
+        TransitioningContentControl.Content = _cache;
     }
 
     private Control CreateControl(Type controlType)
