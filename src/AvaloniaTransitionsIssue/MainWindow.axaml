@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaTransitions.MainWindow"
+        Title="AvaloniaTransitions">
+
+        <Grid ColumnDefinitions="Auto, *">
+                
+                <StackPanel Background="Gray" Orientation="Vertical" Margin="20" Spacing="10">
+                        
+                        <Button Click="Button1_OnClick">Content 1</Button>
+                        <Button Click="Button2_OnClick">Content 2</Button>
+                        
+                </StackPanel>
+                
+                <TransitioningContentControl Name="TransitioningContentControl" Grid.Column="1" Padding="20">
+                        
+                </TransitioningContentControl>
+                
+        </Grid>
+        
+</Window>
