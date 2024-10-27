@@ -1,0 +1,60 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avaloniaMica="clr-namespace:AvaloniaMica"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaMica.MainWindowView"
+        x:DataType="avaloniaMica:MainWindowViewModel"
+        x:Name="MainWindow"
+        ExtendClientAreaToDecorationsHint="True"
+        Title="Avalonia Mica Sample"
+        TransparencyLevelHint="{Binding TransparencyLevelHint}"
+        UseLayoutRounding="True"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Border Name="PART_RootWindowBorder"
+                BorderThickness="2"
+                CornerRadius="8">
+            <Grid RowDefinitions="Auto *">
+                <Grid Height="40">
+                    <TextBlock Margin="5" Text="{Binding #MainWindow.Title}" VerticalAlignment="Center" />
+                </Grid>
+
+                <StackPanel Grid.Row="1" Orientation="Vertical" MaxWidth="1000">
+                    <Border Classes="setting">
+                        <Grid ColumnDefinitions="* Auto">
+                            <TextBlock VerticalAlignment="Center">Dark Theme</TextBlock>
+                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding DarkModeEnabled}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="setting">
+                        <Grid ColumnDefinitions="* Auto">
+                            <TextBlock VerticalAlignment="Center">Transparency</TextBlock>
+                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding TransparencyEnabled}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="setting">
+                        <Grid ColumnDefinitions="* Auto">
+                            <TextBlock VerticalAlignment="Center">Accent Border</TextBlock>
+                            <ToggleSwitch Grid.Column="1"  IsChecked="{Binding BorderEnabled}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="setting">
+                        <Grid ColumnDefinitions="* Auto">
+                            <TextBlock VerticalAlignment="Center">Button Sample</TextBlock>
+                            <Button Classes="setting" Grid.Column="1" Content="Test Button" />
+                        </Grid>
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+            
+        </Border>
+    </Grid>
+
+</Window>
