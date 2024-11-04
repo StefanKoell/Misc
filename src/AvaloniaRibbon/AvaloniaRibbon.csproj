@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <LangVersion>preview</LangVersion>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <RestoreAdditionalProjectSources>
+            https://nuget-feed-nightly.avaloniaui.net/v3/index.json;
+        </RestoreAdditionalProjectSources>
+        <RootNamespace>AvaloniaRibbon</RootNamespace>
+        <AvaVersion>11.2.0</AvaVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ActiproSoftware.Controls.Avalonia.Bars.Mvvm" Version="24.2.0-alpha.6" />
+        <PackageReference Include="ActiproSoftware.Controls.Avalonia.Pro" Version="24.2.0-alpha.6" />
+        <PackageReference Include="Avalonia" Version="$(AvaVersion)" />
+        <PackageReference Include="Avalonia.Desktop" Version="$(AvaVersion)" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaVersion)" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaVersion)" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaVersion)" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+    </ItemGroup>
+</Project>

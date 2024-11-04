@@ -1,0 +1,76 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avaloniaRibbon="clr-namespace:AvaloniaRibbon"
+        xmlns:actipro="http://schemas.actiprosoftware.com/avaloniaui"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaRibbon.MainWindowView"
+        x:DataType="avaloniaRibbon:MainWindowViewModel"
+        x:Name="MainWindow"
+        ExtendClientAreaToDecorationsHint="True"
+        Title="Avalonia Mica Sample"
+        TransparencyLevelHint="{Binding TransparencyLevelHint}"
+        UseLayoutRounding="True"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Border Name="PART_RootWindowBorder"
+                BorderThickness="2"
+                CornerRadius="8">
+            <Grid RowDefinitions="Auto Auto *">
+                <Grid Height="40">
+                    <TextBlock Margin="5" Text="{Binding #MainWindow.Title}" VerticalAlignment="Center" />
+                </Grid>
+
+                <actipro:Ribbon Grid.Row="1"
+                                DataContext="{Binding Ribbon}"
+                                Theme="{StaticResource {x:Static actipro:BarsMvvmResourceKeys.RibbonControlTheme}}"
+                                IsApplicationButtonVisible="False"
+                                QuickAccessToolBarMode="None">
+                        
+                    <actipro:Ribbon.Styles>
+                        <Style Selector="actipro|Ribbon:not(:minimized)">
+                            <Setter Property="Background"
+                                    Value="{DynamicResource UIControlBackgroundBrushBase}" />
+                        </Style>
+                    </actipro:Ribbon.Styles>
+
+                </actipro:Ribbon>
+                
+                <StackPanel Grid.Row="2" Orientation="Vertical" MaxWidth="1000">
+                    <Border Classes="setting">
+                        <Grid ColumnDefinitions="* Auto">
+                            <TextBlock VerticalAlignment="Center">Dark Theme</TextBlock>
+                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding DarkModeEnabled}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="setting">
+                        <Grid ColumnDefinitions="* Auto">
+                            <TextBlock VerticalAlignment="Center">Transparency</TextBlock>
+                            <ToggleSwitch Grid.Column="1" IsChecked="{Binding TransparencyEnabled}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="setting">
+                        <Grid ColumnDefinitions="* Auto">
+                            <TextBlock VerticalAlignment="Center">Accent Border</TextBlock>
+                            <ToggleSwitch Grid.Column="1"  IsChecked="{Binding BorderEnabled}" />
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="setting">
+                        <Grid ColumnDefinitions="* Auto">
+                            <TextBlock VerticalAlignment="Center">Button Sample</TextBlock>
+                            <Button Classes="setting" Grid.Column="1" Content="Test Button" />
+                        </Grid>
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+            
+        </Border>
+    </Grid>
+
+</Window>

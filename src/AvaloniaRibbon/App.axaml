@@ -1,0 +1,165 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:avaloniaRibbon="clr-namespace:AvaloniaRibbon"
+             xmlns:actipro="http://schemas.actiprosoftware.com/avaloniaui"
+             x:Class="AvaloniaRibbon.App"
+             RequestedThemeVariant="Default">
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+
+                <ResourceDictionary x:Key="Default">
+
+                    <Color x:Key="UIWindowBackgroundColorInactive">#F3F3F3</Color>
+                    <Color x:Key="UIWindowBackgroundColorActive">#80F3F3F3</Color>
+
+                    <Color x:Key="UIWindowBorderColorInactive">Transparent</Color>
+
+                    <Color x:Key="UIControlBorderColorBase">#16212121</Color>
+                    <Color x:Key="UIControlBackgroundColorBase">#A0FAFCFD</Color>
+                    <Color x:Key="UIControlBackgroundColorBasePointerOver">#18CCCCCC</Color>
+
+                    <Color x:Key="UIControlBorderColorHigh">#30AAAAAA</Color>
+                    <Color x:Key="UIControlBackgroundColorHigh">#18CCCCCC</Color>
+
+                    <Color x:Key="UIControlBackgroundColorHighest">#40AAAAAA</Color>
+
+                    <Color x:Key="UIExpanderBorderColor">#16212121</Color>
+
+                    <Color x:Key="UIOverlayBackground">#20212121</Color>
+
+                    <Color x:Key="UIPopupBlurBackground">#E3E3E3</Color>
+
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="Dark">
+
+                    <Color x:Key="UIWindowBackgroundColorInactive">#212121</Color>
+                    <Color x:Key="UIWindowBackgroundColorActive">#1E000000</Color>
+
+                    <Color x:Key="UIControlBorderColorBase">#F0212121</Color>
+                    <Color x:Key="UIControlBackgroundColorBase">#0CFFFFFF</Color>
+                    <Color x:Key="UIControlBackgroundColorBasePointerOver">#18FFFFFF</Color>
+
+                    <Color x:Key="UIControlBorderColorHigh">#18FFFFFF</Color>
+                    <Color x:Key="UIControlBackgroundColorHigh">#16FFFFFF</Color>
+
+                    <Color x:Key="UIControlBackgroundColorHighest">#20FFFFFF</Color>
+
+                    <Color x:Key="UIExpanderBorderColor">Transparent</Color>
+
+                    <Color x:Key="UIOverlayBackground">#20FFFFFF</Color>
+
+                    <Color x:Key="UIPopupBlurBackground">#111111</Color>
+
+                </ResourceDictionary>
+
+            </ResourceDictionary.ThemeDictionaries>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary>
+
+                    <SolidColorBrush x:Key="UIWindowBackgroundBrushInactive"
+                                     Color="{DynamicResource UIWindowBackgroundColorInactive}" />
+                    <SolidColorBrush x:Key="UIWindowBackgroundBrushActive"
+                                     Color="{DynamicResource UIWindowBackgroundColorActive}" />
+
+                    <SolidColorBrush x:Key="UIControlBorderBrushBase"
+                                     Color="{DynamicResource UIControlBorderColorBase}" />
+                    <SolidColorBrush x:Key="UIControlBackgroundBrushBase"
+                                     Color="{DynamicResource UIControlBackgroundColorBase}" />
+                    <SolidColorBrush x:Key="UIControlBackgroundBrushBasePointerOver"
+                                     Color="{DynamicResource UIControlBackgroundColorBasePointerOver}" />
+
+                    <SolidColorBrush x:Key="UIControlBorderBrushHigh"
+                                     Color="{DynamicResource UIControlBorderColorHigh}" />
+                    <SolidColorBrush x:Key="UIControlBackgroundBrushHigh"
+                                     Color="{DynamicResource UIControlBackgroundColorHigh}" />
+
+                    <SolidColorBrush x:Key="UIControlBackgroundBrushHighest"
+                                     Color="{DynamicResource UIControlBackgroundColorHighest}" />
+
+                    <SolidColorBrush x:Key="UIExpanderBorderBrush" Color="{DynamicResource UIExpanderBorderColor}" />
+
+                    <SolidColorBrush x:Key="UIOverlayBackgroundBrush" Color="{DynamicResource UIOverlayBackground}" />
+
+                </ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme />
+
+        <actipro:ModernTheme Includes="Pro" />
+
+        <Style Selector=":is(Window)">
+            <Setter Property="(avaloniaRibbon:UIGlobal.TransparencyEnabled)"
+                    Value="{DynamicResource TransparencyEnabled}" />
+        </Style>
+
+        <Style Selector=":is(Window)">
+            <Setter Property="Background" Value="{DynamicResource UIWindowBackgroundBrushInactive}" />
+        </Style>
+
+        <Style Selector=":is(Window)[ActualTransparencyLevel=Mica][IsActive=True]">
+            <Setter Property="Background" Value="{DynamicResource UIWindowBackgroundBrushActive}" />
+        </Style>
+
+        <Style Selector=":is(Window) Border#PART_RootWindowBorder">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+                </Transitions>
+            </Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource UIWindowBorderColorInactive}" />
+        </Style>
+
+        <Style Selector=":is(Window)[IsActive=True][WindowState=Normal] Border#PART_RootWindowBorder">
+            <Setter Property="BorderBrush" Value="{DynamicResource UIWindowBorderColorActive}" />
+        </Style>
+
+        <Style Selector="Border.setting">
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Background" Value="{DynamicResource UIControlBackgroundBrushBase}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource UIControlBorderBrushBase}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+        </Style>
+
+        <Style Selector="Button.setting">
+            <Setter Property="Background" Value="{DynamicResource UIControlBackgroundBrushHigh}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource UIControlBorderBrushHigh}" />
+
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+
+            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Background" Value="{DynamicResource UIControlBackgroundBrushHigh}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource UIControlBorderBrushHigh}" />
+            </Style>
+
+            <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                <Setter Property="Transitions">
+                    <Transitions>
+                        <BrushTransition Property="Background" Duration="0:0:0.2" />
+                    </Transitions>
+                </Setter>
+                <Setter Property="Background" Value="{DynamicResource UIControlBackgroundBrushHighest}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource UIControlBackgroundBrushHighest}" />
+            </Style>
+        </Style>
+
+    </Application.Styles>
+
+</Application>
