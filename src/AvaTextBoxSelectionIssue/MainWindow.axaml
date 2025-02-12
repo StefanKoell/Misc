@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avaTextBoxSelectionIssue="clr-namespace:AvaTextBoxSelectionIssue"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaTextBoxSelectionIssue.MainWindow"
+        Title="AvaFlyoutIssue"
+        x:DataType="avaTextBoxSelectionIssue:MainWindowViewModel">
+
+    <StackPanel Margin="50" Spacing="20">
+
+        <TextBox Name="TextBox" ClearSelectionOnLostFocus="False" IsInactiveSelectionHighlightEnabled="False" Width="200" />
+        <Grid ColumnDefinitions="*,Auto, Auto, Auto, Auto, Auto,*">
+            <TextBlock Grid.Column="1" Text="Selection Start:" />
+            <TextBlock Grid.Column="2" Text="{Binding #TextBox.SelectionStart}" />
+            <TextBlock Grid.Column="3" Text=" --- " />
+            <TextBlock Grid.Column="4" Text="Selection End:" />
+            <TextBlock Grid.Column="5" Text="{Binding #TextBox.SelectionEnd}" />
+        </Grid> 
+        <TextBox Name="TextBox2" Width="200" />
+
+    </StackPanel>
+
+</Window>
