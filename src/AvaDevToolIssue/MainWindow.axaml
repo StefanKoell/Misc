@@ -1,0 +1,145 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avaDevToolIssue="clr-namespace:AvaDevToolIssue"
+        xmlns:actipro="http://schemas.actiprosoftware.com/avaloniaui"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaDevToolIssue.MainWindow"
+        Title="AvaDevToolIssue"
+        x:DataType="avaDevToolIssue:MainWindowViewModel">
+
+        <!-- DockSite -->
+		<actipro:DockSite x:Name="dockSite" 
+			CanDocumentWindowsFloat="True"
+			FloatingWindowTitle="Docking/MDI Demo"
+			UseHostedPopups="False"
+			UseHostedFloatingWindows="False"
+			>
+			<actipro:DockSite.AutoHideLeftContainers>
+				<actipro:ToolWindowContainer>
+
+					<actipro:ToolWindow Title="Panel"
+					                    Description="Displays the primary document's document outline">
+
+						<TextBox
+						         BorderThickness="0"
+						         Text="(none)"
+						         AcceptsReturn="True"
+						         IsReadOnly="True" />
+
+					</actipro:ToolWindow>
+
+				</actipro:ToolWindowContainer>
+			</actipro:DockSite.AutoHideLeftContainers>
+
+			<actipro:SplitContainer Orientation="Vertical">
+				<actipro:SplitContainer>
+
+					<!-- Workspace -->
+					<actipro:Workspace>
+						<actipro:TabbedMdiHost x:Name="tabbedMdiHost">
+
+							<actipro:TabbedMdiHost.EmptyContentTemplate>
+								<DataTemplate>
+									<TextBlock
+										FontStyle="Italic"
+										Foreground="{actipro:ThemeResource DefaultForegroundBrushTertiary}"
+										HorizontalAlignment="Center"
+										VerticalAlignment="Center"
+										Text="No open documents"
+										/>
+								</DataTemplate>
+							</actipro:TabbedMdiHost.EmptyContentTemplate>
+
+							<actipro:TabbedMdiContainer>
+								<actipro:DocumentWindow Title="Test">
+									<Grid x:Name="DocContent">
+										<Border Background="Brown" x:Name="Content">
+											<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Some Content</TextBlock>
+										</Border>
+									</Grid>
+								</actipro:DocumentWindow>
+							</actipro:TabbedMdiContainer>
+							
+						</actipro:TabbedMdiHost>
+					</actipro:Workspace>
+					
+					<actipro:SplitContainer Orientation="Vertical">
+						<actipro:ToolWindowContainer>
+
+							<actipro:ToolWindow x:Name="documentOutlineToolWindow" Title="Document Outline"
+								Description="Displays the primary document's document outline">
+
+								<TextBox x:Name="documentOutlineTextBox"
+										 Grid.Row="1"
+										 BorderThickness="0"
+										 Text="(none)"
+										 AcceptsReturn="True"
+										 IsReadOnly="True" />
+
+							</actipro:ToolWindow>
+
+						</actipro:ToolWindowContainer>
+						<actipro:ToolWindowContainer>
+
+						</actipro:ToolWindowContainer>
+					</actipro:SplitContainer>
+
+				</actipro:SplitContainer>
+
+				<actipro:ToolWindowContainer>
+
+					<actipro:ToolWindow x:Name="outputToolWindow" Title="Output"
+						ContainerDockedSize="300, 200"
+						Description="Displays docking-related events">
+						<ListBox x:Name="eventsListBox" BorderThickness="0" />
+					</actipro:ToolWindow>
+					
+					<actipro:ToolWindow x:Name="toolWindowsToolWindow" Title="Tool Windows"
+						ContainerDockedSize="300, 200"
+						Description="Allows for modification of all registered tool windows">
+
+						<Grid RowDefinitions="Auto,*">
+
+							<DataGrid x:Name="toolWindowsDataGrid"
+								Grid.Row="1"
+								BorderThickness="0"
+								ItemsSource="{Binding #dockSite.ToolWindows}"
+								SelectedIndex="0"
+								x:DataType="actipro:ToolWindow"
+								>
+								<DataGrid.Columns>
+									<DataGridTemplateColumn Header="Title">
+										<DataGridTemplateColumn.CellTemplate>
+											<DataTemplate>
+												<Grid ColumnDefinitions="Auto,*">
+													<ContentControl Classes="theme-icon-presenter"
+														Width="16"
+														Height="16"
+														Margin="4,0"
+														Content="{Binding Icon}"
+														ContentTemplate="{Binding IconTemplate}"
+														VerticalAlignment="Center" />
+													<TextBlock Grid.Column="1" Text="{Binding Title}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+												</Grid>
+											</DataTemplate>
+										</DataGridTemplateColumn.CellTemplate>
+									</DataGridTemplateColumn>
+									<DataGridTextColumn Header="State" Binding="{Binding State}" />
+									<DataGridCheckBoxColumn Header="Is Open" Binding="{Binding IsOpen}" />
+									<DataGridCheckBoxColumn Header="Is Selected" Binding="{Binding IsSelected}" />
+									<DataGridCheckBoxColumn Header="Is Active" Binding="{Binding IsActive}" />
+									<DataGridCheckBoxColumn Header="Is Floating" Binding="{Binding IsFloating}" />
+								</DataGrid.Columns>
+							</DataGrid>
+
+						</Grid>
+					</actipro:ToolWindow>
+				</actipro:ToolWindowContainer>
+
+			</actipro:SplitContainer>
+			
+		</actipro:DockSite>
+        
+</Window>
