@@ -1,12 +1,23 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 namespace AvaloniaMica;
 
-public partial class MainWindowView : Window
+internal partial class MainWindowView : Window
 {
+    private MainWindowViewModel ViewModel => (MainWindowViewModel)DataContext!;
     public MainWindowView()
     {
         InitializeComponent();
-        DataContext = new MainWindowViewModel();
+    }
+
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        ViewModel.UpdateSystemColor();
+        App.MainWindow?.PlatformSettings?.ColorValuesChanged += (_, _) =>
+        {
+            ViewModel.UpdateSystemColor();
+        };
     }
 }

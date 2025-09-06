@@ -1,6 +1,8 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:avaloniaMica="clr-namespace:AvaloniaMica"
+             xmlns:actipro="http://schemas.actiprosoftware.com/avaloniaui"
+             xmlns:generation="using:ActiproSoftware.UI.Avalonia.Themes.Generation"
              x:Class="AvaloniaMica.App"
              RequestedThemeVariant="Default">
     <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
@@ -95,7 +97,20 @@
     </Application.Resources>
 
     <Application.Styles>
-        <FluentTheme />
+        
+        <actipro:ModernTheme Includes="NativeColorPicker">
+            <actipro:ModernTheme.Definition>
+                <generation:ThemeDefinition
+                    UseAccentedSwitches="True" 
+                    ToggleSwitchAppearanceKind="Solid" 
+                    ToggleSwitchHasFarAffinity="True" 
+                    AccentColorRampName="Red">
+                    <generation:ThemeDefinition.ColorPaletteFactory>
+                        <avaloniaMica:ColorPaletteFactory />
+                    </generation:ThemeDefinition.ColorPaletteFactory>
+                </generation:ThemeDefinition>
+            </actipro:ModernTheme.Definition>
+        </actipro:ModernTheme>
 
         <Style Selector=":is(Window)">
             <Setter Property="(avaloniaMica:UIGlobal.TransparencyEnabled)"

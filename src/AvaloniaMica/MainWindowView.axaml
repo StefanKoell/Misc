@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:avaloniaMica="clr-namespace:AvaloniaMica"
+        xmlns:converters="clr-namespace:Avalonia.Markup.Xaml.Converters;assembly=Avalonia.Markup.Xaml"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaMica.MainWindowView"
         x:DataType="avaloniaMica:MainWindowViewModel"
@@ -13,6 +14,16 @@
         UseLayoutRounding="True"
         WindowStartupLocation="CenterScreen">
 
+    <Window.Resources>
+        <converters:ColorToBrushConverter x:Key="ColorToBrush" />
+        <DataTemplate x:Key="AccentColorItemTemplate" DataType="avaloniaMica:AccentComboBoxItem">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="14" Height="14" Margin="0 0 6 0" Fill="{Binding Color, Converter={StaticResource ColorToBrush}}" />
+                <TextBlock Text="{Binding Text}" />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
         <Border Name="PART_RootWindowBorder"
                 BorderThickness="2"
@@ -46,8 +57,28 @@
 
                     <Border Classes="setting">
                         <Grid ColumnDefinitions="* Auto">
-                            <TextBlock VerticalAlignment="Center">Button Sample</TextBlock>
-                            <Button Classes="setting" Grid.Column="1" Content="Test Button" />
+                            <TextBlock VerticalAlignment="Center">Accent Color</TextBlock>
+                            <ComboBox 
+                                Grid.Column="1" 
+                                Classes="setting" 
+                                Width="300" 
+                                ItemsSource="{Binding AccentColors}" 
+                                SelectedValue="{Binding SelectedAccentColor}"
+                                SelectedValueBinding="{Binding Value}"
+                                ItemTemplate="{StaticResource AccentColorItemTemplate}"
+                                SelectionBoxItemTemplate="{StaticResource AccentColorItemTemplate}">
+                            </ComboBox>
+                        </Grid>
+                    </Border>
+
+                    <Border Classes="setting" IsVisible="{Binding CustomColorEnabled}">
+                        <Grid ColumnDefinitions="* Auto">
+                            <TextBlock VerticalAlignment="Center">Custom Accent Color</TextBlock>
+                            <ColorPicker 
+                                Grid.Column="1"
+                                Classes="has-value-text"
+                                Width="150"
+                                Color="{Binding CustomColor}" />
                         </Grid>
                     </Border>
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
@@ -7,32 +8,40 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AvaloniaMica;
 
-public partial class MainWindowViewModel : ObservableObject
+internal partial class MainWindowViewModel : ObservableObject
 {
-    [ObservableProperty] private bool _darkModeEnabled;
-    [ObservableProperty] private bool _borderEnabled;
-
-    [ObservableProperty] private bool _transparencyEnabled;
-    [ObservableProperty] private ObservableCollection<WindowTransparencyLevel> _transparencyLevelHint = [];
+    [ObservableProperty] public partial bool DarkModeEnabled { get; set; }
+    [ObservableProperty] public partial bool BorderEnabled { get; set; }
+    [ObservableProperty] public partial bool TransparencyEnabled { get; set; }
+    [ObservableProperty] public partial bool CustomColorEnabled { get; set; }
+    [ObservableProperty] public partial AccentColor SelectedAccentColor { get; set; } = AccentColor.System;
+    [ObservableProperty] public partial Color CustomColor { get; set; } = Colors.Coral;
+    [ObservableProperty] public partial ObservableCollection<AccentComboBoxItem> AccentColors { get; set; } = [];
+    [ObservableProperty] public partial ObservableCollection<WindowTransparencyLevel> TransparencyLevelHint { get; set; } = [];
     
     public MainWindowViewModel()
     {
-        _darkModeEnabled = Application.Current!.ActualThemeVariant == ThemeVariant.Dark;
+        DarkModeEnabled = Application.Current!.ActualThemeVariant == ThemeVariant.Dark;
+        foreach (AccentColor value in Enum.GetValues(typeof(AccentColor)))
+        {
+            AccentColors.Add(new AccentComboBoxItem
+            {
+                Color = App.ColorPaletteFactory!.GetColor(value),
+                Text = value.ToString(),
+                Value = value,
+            });
+        }
     }
-    
-    partial void OnDarkModeEnabledChanged(bool value)
-    {
+
+    public void UpdateSystemColor() => AccentColors[0].Color = App.ColorPaletteFactory!.GetColor(AccentColor.System);
+
+    partial void OnDarkModeEnabledChanged(bool value) =>
         Application.Current!.RequestedThemeVariant = value 
             ? ThemeVariant.Dark 
             : ThemeVariant.Light;
-    }
 
-    partial void OnBorderEnabledChanged(bool value)
-    {
-        Application.Current!.Resources["UIWindowBorderColorActive"] = value
-            ? App.MainWindow.PlatformSettings?.GetColorValues().AccentColor1 ?? Colors.Transparent
-            : Colors.Transparent;
-    }
+    partial void OnBorderEnabledChanged(bool value) => 
+        App.ColorPaletteFactory?.BorderAccentColorEnabled = value;
 
     partial void OnTransparencyEnabledChanged(bool value)
     {
@@ -44,5 +53,17 @@ public partial class MainWindowViewModel : ObservableObject
             : [];
         
         Application.Current!.Resources[nameof(UIGlobal.TransparencyEnabled)] = value;
+    }
+
+    partial void OnSelectedAccentColorChanged(AccentColor value)
+    {
+        App.ColorPaletteFactory!.AccentColor = value;
+        CustomColorEnabled = value == AccentColor.Custom;
+    }
+
+    partial void OnCustomColorChanged(Color value)
+    {
+        App.ColorPaletteFactory!.CustomAccentColor = value;
+        AccentColors[1].Color = value;
     }
 }

@@ -1,17 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>preview</LangVersion>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-        <RestoreAdditionalProjectSources>
-            https://nuget-feed-nightly.avaloniaui.net/v3/index.json;
-        </RestoreAdditionalProjectSources>
         <RootNamespace>AvaloniaMica</RootNamespace>
-        <AvaVersion>11.2.0-rc2</AvaVersion>
+        <AvaVersion>11.3.5</AvaVersion>
+        <ActiproVersion>25.2.1</ActiproVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,8 +17,13 @@
         <PackageReference Include="Avalonia.Desktop" Version="$(AvaVersion)" />
         <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaVersion)" />
         <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaVersion)" />
+
+        <PackageReference Include="ActiproSoftware.Controls.Avalonia" Version="$(ActiproVersion)" />
+        <PackageReference Include="ActiproSoftware.Controls.Avalonia.Themes.ColorPicker" Version="$(ActiproVersion)" />
+
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaVersion)" />
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     </ItemGroup>
 </Project>
