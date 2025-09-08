@@ -29,6 +29,7 @@ public enum AccentColor
 
 internal class ColorPaletteFactory : DefaultColorPaletteFactory
 {
+    private const string CustomRampName = "Custom";
     public AccentColor AccentColor
     {
         get;
@@ -72,8 +73,7 @@ internal class ColorPaletteFactory : DefaultColorPaletteFactory
         if (color is null) 
             return palette;
         
-        palette.Ramps.Remove(Hue.Red);
-        palette.Ramps.Add(CreateColorRamp(Hue.Red, color.Value));
+        palette.Ramps.Add(CreateColorRamp(CustomRampName, false, color.Value));
 
         return palette;
     }
@@ -128,7 +128,7 @@ internal class ColorPaletteFactory : DefaultColorPaletteFactory
 
     private string GetColorRampName(AccentColor accentColor) => accentColor switch
     {
-        AccentColor.System or AccentColor.Custom => nameof(AccentColor.Red),
+        AccentColor.System or AccentColor.Custom => CustomRampName,
         _ => accentColor.ToString()
     };
 }
