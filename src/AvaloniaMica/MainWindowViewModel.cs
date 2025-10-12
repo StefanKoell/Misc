@@ -18,6 +18,8 @@ internal partial class MainWindowViewModel : ObservableObject
     [ObservableProperty] public partial Color CustomColor { get; set; } = Colors.Coral;
     [ObservableProperty] public partial ObservableCollection<AccentComboBoxItem> AccentColors { get; set; } = [];
     [ObservableProperty] public partial ObservableCollection<WindowTransparencyLevel> TransparencyLevelHint { get; set; } = [];
+    [ObservableProperty] public partial int NumericUpDown { get; set; } = 10;
+
     
     public MainWindowViewModel()
     {

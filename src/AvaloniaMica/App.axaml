@@ -172,6 +172,8 @@
             </Style>
         </Style>
 
+        <StyleInclude Source="DataValidationErrors.axaml" />
+
     </Application.Styles>
 
 </Application>

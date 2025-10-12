@@ -8,7 +8,7 @@
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
         <RootNamespace>AvaloniaMica</RootNamespace>
-        <AvaVersion>11.3.5</AvaVersion>
+        <AvaVersion>11.3.7</AvaVersion>
         <ActiproVersion>25.2.1</ActiproVersion>
     </PropertyGroup>
 
