@@ -1,0 +1,75 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:CompositionRingSpinner.Controls"
+        xmlns:local="using:CompositionRingSpinner"
+        x:Class="CompositionRingSpinner.MainWindow"
+        x:DataType="local:MainWindowViewModel"
+        Width="640"
+        Height="480"
+        MinWidth="560"
+        MinHeight="430"
+        Title="Composition Ring Spinner"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="32" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="24">
+        <StackPanel Spacing="8">
+            <TextBlock FontSize="24" FontWeight="SemiBold" Text="UI thread blocking comparison" />
+            <TextBlock MaxWidth="560"
+                       Foreground="{DynamicResource TextControlForegroundSecondary}"
+                       Text="Both indicators animate normally. Block the UI thread to see which animation keeps running."
+                       TextWrapping="Wrap" />
+        </StackPanel>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,24,*">
+            <Border Grid.Column="0"
+                    Padding="20"
+                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8">
+                <StackPanel Spacing="16">
+                    <TextBlock FontWeight="SemiBold" Text="Standard ProgressBar" />
+                    <ProgressBar Height="8"
+                                 IsIndeterminate="True"
+                                 VerticalAlignment="Center" />
+                    <TextBlock Foreground="{DynamicResource TextControlForegroundSecondary}"
+                               Text="Animated through the normal UI pipeline"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2"
+                    Padding="20"
+                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8">
+                <StackPanel Spacing="12">
+                    <TextBlock FontWeight="SemiBold" Text="CompositionRingSpinner" />
+                    <controls:CompositionRingSpinner Width="48"
+                                                     Height="48"
+                                                     HorizontalAlignment="Left"
+                                                     ForegroundColor="#0078D4"
+                                                     StrokeThickness="4"
+                                                     TrackColor="#200078D4" />
+                    <TextBlock Foreground="{DynamicResource TextControlForegroundSecondary}"
+                               Text="Animated by a custom composition visual"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Button Grid.Row="2"
+                HorizontalAlignment="Left"
+                AutomationProperties.HelpText="Blocks the UI thread for five seconds"
+                Command="{CompiledBinding BlockUiThreadCommand}"
+                Content="Block UI thread for 5 seconds" />
+
+        <TextBlock Grid.Row="3"
+                   MaxWidth="560"
+                   VerticalAlignment="Top"
+                   Foreground="{DynamicResource TextControlForegroundSecondary}"
+                   Text="The window will not process input while it is blocked. The composition spinner only keeps the visual indication of activity alive."
+                   TextWrapping="Wrap" />
+    </Grid>
+</Window>
